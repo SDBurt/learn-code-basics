@@ -333,7 +333,7 @@ export function CodingHumorPage() {
         </div>
 
         <div className="space-y-4">
-          {filtered.map((joke, i) => {
+          {filtered.map((joke) => {
             const globalIndex = jokes.indexOf(joke);
 
             return (

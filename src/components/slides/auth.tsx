@@ -70,15 +70,17 @@ function LoginSimulation() {
 
   useEffect(() => {
     if (phase !== "running" || currentStep < 0) return;
-
-    if (currentStep >= 4) {
-      setPhase("complete");
-      return;
-    }
+    if (currentStep >= 4) return;
 
     const delay = currentStep === 0 ? 400 : 600;
     const timer = setTimeout(() => {
-      setCurrentStep((prev) => prev + 1);
+      setCurrentStep((prev) => {
+        const next = prev + 1;
+        if (next >= 4) {
+          setPhase("complete");
+        }
+        return next;
+      });
     }, delay);
 
     return () => clearTimeout(timer);

@@ -34,8 +34,7 @@ describe("QuizPage", () => {
     const user = userEvent.setup();
 
     // Find the question text to identify which question is displayed
-    const questionHeading = screen.getByRole("heading", { level: 2 });
-    const questionText = questionHeading.textContent || "";
+    screen.getByRole("heading", { level: 2 });
 
     // Find all option buttons
     const optionButtons = screen.getAllByRole("button").filter((btn) =>
