@@ -4,10 +4,19 @@ An interactive learning platform that explains what developers actually do -- no
 
 ## What's Inside
 
-- **7 Topic Slide Decks** -- Basics, The Web, Developer Tools, The Big Picture, AI & Data, Mobile & Beyond, each with interactive slides, analogies, and code examples
+- **7 Topic Slide Decks** -- Basics, The Web, Developer Tools, The Big Picture, AI & Data, Mobile & Beyond, each with interactive demos, analogies, and beginner-friendly explanations
 - **Terminology Glossary** -- 80+ searchable terms across 6 categories with card and list views
 - **Knowledge Quiz** -- 20 shuffled multiple-choice questions with instant feedback and scoring
-- **Coding Humor** -- Curated jokes, one-liners, and quotes every developer knows
+- **Coding Humor** -- 30 curated jokes, one-liners, and quotes with tooltip explainers for non-technical readers
+
+## Features
+
+- Swipe and arrow-key navigation for slides
+- Interactive demos (DNS lookup, login simulation, type sorter, list builder, and more)
+- Tooltip explainers on jokes for people who don't get the reference
+- Responsive mobile design with full-width nav buttons and back-to-top
+- Dismissible navigation hints (persisted via sessionStorage)
+- Pre-commit hook runs build, lint, and tests automatically
 
 ## Tech Stack
 
@@ -16,7 +25,8 @@ An interactive learning platform that explains what developers actually do -- no
 - Tailwind CSS 4 with a custom sage/pink/cream palette
 - shadcn/ui components
 - React Router DOM
-- Vitest for testing
+- Vitest (249 tests)
+- Husky pre-commit hooks
 - Lucide React icons
 - Fraunces (display) and DM Sans (body) fonts
 
@@ -32,6 +42,12 @@ make dev
 # Run tests
 make test
 
+# Type-check and build for production
+make build
+
+# Run ESLint
+make lint
+
 # See all available commands
 make help
 ```
@@ -41,15 +57,15 @@ make help
 ```
 src/
   components/
-    shared/       # Reusable components (SlideLayout, CodeBlock, AnalogyBox, etc.)
+    shared/       # Reusable components (SlideLayout, CodeBlock, AnalogyBox, BackToTop, etc.)
     slides/       # Individual slide components for each topic
-    ui/           # shadcn/ui primitives
+    ui/           # shadcn/ui primitives (Button, Card, Badge, Tooltip, etc.)
   data/
     topics.ts     # Central registry of all topics and slides
   pages/
-    home.tsx          # Landing page with topic cards
-    topic-page.tsx    # Slide viewer with navigation
-    terminology.tsx   # Searchable glossary
-    quiz.tsx          # Multiple-choice quiz
-    coding-humor.tsx  # Developer jokes and quotes
+    home.tsx          # Landing page with topic cards and footer
+    topic-page.tsx    # Slide viewer with swipe/keyboard navigation
+    terminology.tsx   # Searchable glossary with card and list views
+    quiz.tsx          # Multiple-choice quiz with scoring
+    coding-humor.tsx  # Developer jokes with tooltip explainers
 ```
