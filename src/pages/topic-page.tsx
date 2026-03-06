@@ -1,10 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { getTopicBySlug } from "@/data/topics";
 import { TopicSlideshow } from "@/components/topic-slideshow";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 export function TopicPage() {
   const { slug } = useParams<{ slug: string }>();
   const topic = slug ? getTopicBySlug(slug) : undefined;
+
+  usePageMeta(
+    topic ? topic.name : "Topic Not Found",
+    topic?.description,
+  );
 
   if (!topic) {
     return (

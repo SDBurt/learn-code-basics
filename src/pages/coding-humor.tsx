@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface Joke {
   category: string;
@@ -280,6 +281,10 @@ function ExplainerTip({ text }: { text: string }) {
 }
 
 export function CodingHumorPage() {
+  usePageMeta(
+    "Coding Humor",
+    "30 curated programming jokes, one-liners, and developer quotes with plain-language explanations.",
+  );
   const [activeCategory, setActiveCategory] = useState("All");
   const [revealedPunchlines, setRevealedPunchlines] = useState<Set<number>>(new Set());
 

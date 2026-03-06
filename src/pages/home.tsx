@@ -2,11 +2,16 @@ import { Link } from "react-router-dom";
 import { BookOpen, HelpCircle, Laugh } from "lucide-react";
 import { TOPICS } from "@/data/topics";
 import { TopicCard } from "@/components/topic-card";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 export function HomePage() {
+  usePageMeta(
+    "Learn Code Basics",
+    "A friendly, interactive guide to understanding software development. Learn about coding, the web, APIs, databases, AI, and more -- no programming experience required.",
+  );
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <main className="max-w-3xl mx-auto px-6 py-16">
         <header className="mb-12">
           <h1 className="font-display font-bold text-3xl text-sage-700 mb-2">
             Learn Code Basics
@@ -16,55 +21,61 @@ export function HomePage() {
           </p>
         </header>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {TOPICS.map((topic, i) => (
-            <TopicCard key={topic.slug} topic={topic} index={i} />
-          ))}
-        </div>
+        <section aria-label="Topics">
+          <h2 className="sr-only">Topics</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {TOPICS.map((topic, i) => (
+              <TopicCard key={topic.slug} topic={topic} index={i} />
+            ))}
+          </div>
+        </section>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Link
-            to="/terminology"
-            data-sparkle
-            className="group block rounded-2xl border border-pink-200 bg-gradient-to-r from-pink-50 to-sage-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-          >
-            <BookOpen className="h-5 w-5 text-pink-400 mb-3" />
-            <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
-              Terminology Glossary
-            </h3>
-            <p className="text-base text-sage-500 leading-relaxed">
-              Searchable reference of 80+ programming and tech terms.
-            </p>
-          </Link>
+        <section aria-label="Resources" className="mt-8">
+          <h2 className="sr-only">Resources</h2>
+          <nav className="grid gap-4 sm:grid-cols-3">
+            <Link
+              to="/terminology"
+              data-sparkle
+              className="group block rounded-2xl border border-pink-200 bg-gradient-to-r from-pink-50 to-sage-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+            >
+              <BookOpen className="h-5 w-5 text-pink-400 mb-3" />
+              <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
+                Terminology Glossary
+              </h3>
+              <p className="text-base text-sage-500 leading-relaxed">
+                Searchable reference of 80+ programming and tech terms.
+              </p>
+            </Link>
 
-          <Link
-            to="/quiz"
-            data-sparkle
-            className="group block rounded-2xl border border-sage-200 bg-gradient-to-r from-sage-50 to-pink-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-          >
-            <HelpCircle className="h-5 w-5 text-sage-400 mb-3" />
-            <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
-              Test Your Knowledge
-            </h3>
-            <p className="text-base text-sage-500 leading-relaxed">
-              20-question quiz covering everything you've learned.
-            </p>
-          </Link>
+            <Link
+              to="/quiz"
+              data-sparkle
+              className="group block rounded-2xl border border-sage-200 bg-gradient-to-r from-sage-50 to-pink-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+            >
+              <HelpCircle className="h-5 w-5 text-sage-400 mb-3" />
+              <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
+                Test Your Knowledge
+              </h3>
+              <p className="text-base text-sage-500 leading-relaxed">
+                20-question quiz covering everything you've learned.
+              </p>
+            </Link>
 
-          <Link
-            to="/coding-humor"
-            data-sparkle
-            className="group block rounded-2xl border border-pink-200 bg-gradient-to-r from-pink-50 to-sage-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-          >
-            <Laugh className="h-5 w-5 text-pink-400 mb-3" />
-            <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
-              Coding Humor
-            </h3>
-            <p className="text-base text-sage-500 leading-relaxed">
-              Jokes and quotes every developer knows and loves.
-            </p>
-          </Link>
-        </div>
+            <Link
+              to="/coding-humor"
+              data-sparkle
+              className="group block rounded-2xl border border-pink-200 bg-gradient-to-r from-pink-50 to-sage-50 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+            >
+              <Laugh className="h-5 w-5 text-pink-400 mb-3" />
+              <h3 className="font-display font-bold text-xl text-sage-700 mb-1 group-hover:text-sage-800 transition-colors">
+                Coding Humor
+              </h3>
+              <p className="text-base text-sage-500 leading-relaxed">
+                Jokes and quotes every developer knows and loves.
+              </p>
+            </Link>
+          </nav>
+        </section>
 
         <footer className="mt-16 pt-6 border-t border-sage-100 text-center">
           <p className="text-sm text-sage-400">
@@ -81,7 +92,7 @@ export function HomePage() {
             </a>
           </p>
         </footer>
-      </div>
+      </main>
     </div>
   );
 }

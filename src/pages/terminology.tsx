@@ -5,6 +5,7 @@ import { BackToTop } from "@/components/shared/back-to-top";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface Term {
   name: string;
@@ -554,6 +555,10 @@ const terms: Term[] = [
 type ViewMode = "cards" | "list";
 
 export function TerminologyPage() {
+  usePageMeta(
+    "Terminology Glossary",
+    "Searchable glossary of 80+ programming and tech terms explained in plain language. Variables, APIs, databases, Git, and more.",
+  );
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [view, setView] = useState<ViewMode>("cards");

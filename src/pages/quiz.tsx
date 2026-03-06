@@ -5,6 +5,7 @@ import { BackToTop } from "@/components/shared/back-to-top";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface Question {
   question: string;
@@ -303,6 +304,10 @@ function getResultMessage(percentage: number): string {
 }
 
 export function QuizPage() {
+  usePageMeta(
+    "Test Your Knowledge",
+    "20-question quiz on coding fundamentals, web development, developer tools, and more. See how much you've learned.",
+  );
   const [questions, setQuestions] = useState<Question[]>(() =>
     shuffleArray(QUESTIONS)
   );
