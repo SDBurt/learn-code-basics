@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
 import { HomePage } from "./pages/home";
 import { TopicPage } from "./pages/topic-page";
 import { TerminologyPage } from "./pages/terminology";
@@ -21,7 +20,6 @@ function App() {
         <Route path="/coding-humor" element={<CodingHumorPage />} />
       </Routes>
       </TooltipProvider>
-      <Analytics />
     </BrowserRouter>
   );
 }
