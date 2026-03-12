@@ -13,8 +13,8 @@ describe("DictionariesSlide", () => {
     render(<DictionariesSlide active={true} />);
     const nameElements = screen.getAllByText('"name"');
     expect(nameElements.length).toBeGreaterThanOrEqual(1);
-    const lunaElements = screen.getAllByText('"Luna"');
-    expect(lunaElements.length).toBeGreaterThanOrEqual(1);
+    const juneauElements = screen.getAllByText('"Juneau"');
+    expect(juneauElements.length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the description about key-value pairs", () => {

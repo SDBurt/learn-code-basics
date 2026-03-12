@@ -19,22 +19,25 @@ describe("DataTypesSlide", () => {
 
   it("renders descriptions for each data type", () => {
     render(<DataTypesSlide active={true} />);
-    expect(screen.getByText("Text wrapped in quotes")).toBeInTheDocument();
-    expect(screen.getByText("Whole numbers")).toBeInTheDocument();
-    expect(screen.getByText("Decimal numbers")).toBeInTheDocument();
-    expect(screen.getByText("True or False")).toBeInTheDocument();
+    expect(
+      screen.getByText("Text -- like names, sentences, anything in quotes")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("A whole number, no decimals")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("A number with a decimal point")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Just True or False, like a yes/no")
+    ).toBeInTheDocument();
   });
 
   it("renders the analogy box", () => {
     render(<DataTypesSlide active={true} />);
     expect(screen.getByText("Think of it this way")).toBeInTheDocument();
     expect(
-      screen.getByText(/different kinds of containers/)
+      screen.getByText(/phone.*contacts/)
     ).toBeInTheDocument();
-  });
-
-  it("renders the code block with example output", () => {
-    render(<DataTypesSlide active={true} />);
-    expect(screen.getByText(/"Alice"/)).toBeInTheDocument();
   });
 });

@@ -38,7 +38,7 @@ describe("HomePage", () => {
 
   it("renders slide counts for each topic", () => {
     renderHome();
-    expect(screen.getByText("13 slides")).toBeInTheDocument();
+    expect(screen.getByText("14 slides")).toBeInTheDocument();
     expect(screen.getByText("10 slides")).toBeInTheDocument();
     expect(screen.getByText("8 slides")).toBeInTheDocument();
     expect(screen.getByText("7 slides")).toBeInTheDocument();

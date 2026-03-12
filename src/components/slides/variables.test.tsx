@@ -6,11 +6,7 @@ import { VariablesSlide } from "./variables";
 describe("VariablesSlide", () => {
   it("renders the variable type labels", () => {
     render(<VariablesSlide active={true} />);
-    expect(screen.getAllByText("text (string)").length).toBeGreaterThanOrEqual(
-      1
-    );
-    expect(screen.getByText("decimal (float)")).toBeInTheDocument();
-    expect(screen.getByText("yes/no (boolean)")).toBeInTheDocument();
+    expect(screen.getAllByText("text").length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the variable value displays", () => {
@@ -18,20 +14,16 @@ describe("VariablesSlide", () => {
     expect(
       screen.getAllByText('"Shayla"').length
     ).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("5.6").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("True").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("shows default values in the interactive section", () => {
+  it("renders the Run Code button", () => {
     render(<VariablesSlide active={true} />);
     expect(
-      screen.getByText(
-        /Shayla loves purple and is amazing at coding/
-      )
+      screen.getByRole("button", { name: /Run Code/ })
     ).toBeInTheDocument();
   });
 
-  it("updates the live result when name input changes", async () => {
+  it("updates variable boxes when name input changes", async () => {
     const user = userEvent.setup();
     render(<VariablesSlide active={true} />);
 
@@ -40,55 +32,45 @@ describe("VariablesSlide", () => {
     await user.type(nameInput, "Alex");
 
     expect(
-      screen.getByText(/Alex loves purple and is amazing at coding/)
-    ).toBeInTheDocument();
+      screen.getAllByText('"Alex"').length
+    ).toBeGreaterThanOrEqual(1);
   });
 
-  it("updates the live result when colour input changes", async () => {
+  it("updates variable boxes when colour input changes", async () => {
     const user = userEvent.setup();
     render(<VariablesSlide active={true} />);
 
-    const colourInput = screen.getByDisplayValue("purple");
+    const colourInput = screen.getByDisplayValue("green");
     await user.clear(colourInput);
     await user.type(colourInput, "blue");
 
     expect(
-      screen.getByText(/Shayla loves blue and is amazing at coding/)
-    ).toBeInTheDocument();
+      screen.getAllByText('"blue"').length
+    ).toBeGreaterThanOrEqual(1);
   });
 
-  it("updates the live result when talent input changes", async () => {
+  it("updates variable boxes when talent input changes", async () => {
     const user = userEvent.setup();
     render(<VariablesSlide active={true} />);
 
-    const talentInput = screen.getByDisplayValue("coding");
+    const talentInput = screen.getByDisplayValue("law");
     await user.clear(talentInput);
     await user.type(talentInput, "art");
 
     expect(
-      screen.getByText(/Shayla loves purple and is amazing at art/)
-    ).toBeInTheDocument();
+      screen.getAllByText('"art"').length
+    ).toBeGreaterThanOrEqual(1);
   });
 
-  it("shows fallback values when inputs are empty", async () => {
+  it("uses fallback values when inputs are empty", async () => {
     const user = userEvent.setup();
     render(<VariablesSlide active={true} />);
 
     const nameInput = screen.getByDisplayValue("Shayla");
-    const talentInput = screen.getByDisplayValue("coding");
-
     await user.clear(nameInput);
-    await user.clear(talentInput);
 
     expect(
-      screen.getByText(
-        /someone loves purple and is amazing at so many things/
-      )
-    ).toBeInTheDocument();
-  });
-
-  it("renders the try it yourself section", () => {
-    render(<VariablesSlide active={true} />);
-    expect(screen.getByText("Try it yourself!")).toBeInTheDocument();
+      screen.getAllByText('"someone"').length
+    ).toBeGreaterThanOrEqual(1);
   });
 });

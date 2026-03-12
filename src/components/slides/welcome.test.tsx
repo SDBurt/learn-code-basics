@@ -17,13 +17,23 @@ describe("WelcomeSlide", () => {
 
   it("renders both comparison cards", () => {
     render(<WelcomeSlide active={true} />);
-    expect(screen.getByText("Human Language")).toBeInTheDocument();
+    expect(screen.getByText("What you might say")).toBeInTheDocument();
     expect(
-      screen.getByText(/Take the price of the item, add 20% tax/)
+      screen.getByText(/Take the price, add the tax, and tell me the total/)
     ).toBeInTheDocument();
     const headings = screen.getAllByRole("heading", { level: 3 });
-    const codeHeading = headings.find((h) => h.textContent === "Code");
+    const codeHeading = headings.find(
+      (h) => h.textContent === "What you'd write for a computer"
+    );
     expect(codeHeading).toBeDefined();
+  });
+
+  it("renders the ordered list in the computer card", () => {
+    render(<WelcomeSlide active={true} />);
+    expect(screen.getByText("The price is 50")).toBeInTheDocument();
+    expect(
+      screen.getByText("The total is the price plus the tax")
+    ).toBeInTheDocument();
   });
 
   it("renders the overline text", () => {

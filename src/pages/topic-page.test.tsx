@@ -17,7 +17,7 @@ describe("TopicPage", () => {
   it("renders the slideshow for a valid topic slug", () => {
     renderTopicPage("basics");
     expect(screen.getByText("What is Code?")).toBeInTheDocument();
-    expect(screen.getAllByText(/1\/13/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/1\/14/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders 404 for an invalid slug", () => {

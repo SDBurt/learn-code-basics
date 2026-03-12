@@ -10,7 +10,8 @@ describe("InternetHttpSlide", () => {
 
   it("renders the heading containing HTTP", () => {
     render(<InternetHttpSlide active={true} />);
-    expect(screen.getByText("HTTP")).toBeInTheDocument();
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading).toHaveTextContent("HTTP");
   });
 
   it("renders the URL input with default value", () => {

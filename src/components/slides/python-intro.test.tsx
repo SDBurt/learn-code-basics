@@ -12,9 +12,11 @@ describe("PythonIntroSlide", () => {
   it("renders the Why Python section with key bullet points", () => {
     render(<PythonIntroSlide active={true} />);
     expect(screen.getByText("Why Python?")).toBeInTheDocument();
-    expect(screen.getByText("Easy to read and write")).toBeInTheDocument();
     expect(
-      screen.getByText("Companies like Google, Netflix, and NASA use it")
+      screen.getByText("Reads almost like plain English")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Used by companies like Google, Netflix, and NASA")
     ).toBeInTheDocument();
   });
 
