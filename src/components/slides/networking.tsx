@@ -9,6 +9,7 @@ import {
   Blob,
 } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 function domainToIp(domain: string): string {
   let hash = 0;
@@ -241,6 +242,19 @@ export function NetworkingSlide({ active }: { active: boolean }) {
           </Card>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "What's the difference between HTTP and HTTPS?",
+            answer: "The 'S' stands for 'Secure'. HTTPS encrypts the data being sent back and forth so nobody can spy on it. That's why you see the little padlock icon in your browser -- it means the connection is encrypted. Always look for https:// when entering passwords or payment info."
+          },
+          {
+            question: "Why can't we just use IP addresses instead of domain names?",
+            answer: "You technically can! But remembering 142.250.80.46 is much harder than remembering google.com. DNS exists purely for human convenience -- computers still use IP addresses behind the scenes."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

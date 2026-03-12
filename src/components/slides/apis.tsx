@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
+import { SlideQA } from "@/components/shared/slide-qa";
 import { AnalogyBox } from "@/components/shared/analogy-box";
 
 const endpoints: Record<string, string> = {
@@ -120,6 +121,19 @@ export function ApisSlide({ active }: { active: boolean }) {
           </pre>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "What does API stand for?",
+            answer: "Application Programming Interface. It's just a way for two programs to talk to each other. When an app on your phone shows the weather, it's using an API to ask a weather service for the latest data."
+          },
+          {
+            question: "What is JSON?",
+            answer: "JSON is a way of organizing data using curly braces, labels, and values -- like a digital form. It's the most common format apps use when sending data back and forth through APIs. It looks complicated at first, but it's just labels paired with values."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

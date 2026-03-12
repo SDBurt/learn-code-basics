@@ -6,6 +6,7 @@ import {
   Blob,
 } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 interface Person {
   name: string;
@@ -126,6 +127,19 @@ export function DatabasesSlide({ active }: { active: boolean }) {
           </CardContent>
         </Card>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "How is a database different from a spreadsheet?",
+            answer: "A spreadsheet is great for one person working with a small amount of data. A database can handle millions of entries, let many people access it at the same time, and find specific information almost instantly. Think of it as a supercharged, automated spreadsheet."
+          },
+          {
+            question: "Where does the database live?",
+            answer: "Usually on a server -- a computer that's always running somewhere in a data centre. When you sign up for an app, your information gets sent over the internet to that server's database. That's why you can log in from any device and still see your data."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

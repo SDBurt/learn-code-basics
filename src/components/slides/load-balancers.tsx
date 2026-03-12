@@ -7,6 +7,7 @@ import {
   Blob,
 } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 const serverNames = ["Server A", "Server B", "Server C"];
 const serverColors = ["bg-pink-400", "bg-sage-400", "bg-pink-300"];
@@ -151,6 +152,19 @@ export function LoadBalancersSlide({ active }: { active: boolean }) {
           </CardContent>
         </Card>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "When do you need a load balancer?",
+            answer: "When one server can't handle all the traffic. If your app suddenly goes viral and millions of people try to use it at once, a single server would crash. A load balancer spreads those visitors across multiple servers so no single one gets overwhelmed."
+          },
+          {
+            question: "What happens if a server behind the load balancer crashes?",
+            answer: "The load balancer notices and stops sending traffic to it. It redirects everyone to the remaining healthy servers. This is one of the big benefits -- if one server fails, users don't even notice because the others pick up the slack."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,15 +7,39 @@ import {
   Overline,
   Blob,
 } from "@/components/shared/slide-layout";
+import { SlideQA } from "@/components/shared/slide-qa";
+import { InfoTip } from "@/components/shared/info-tip";
 
 interface BackendStep {
-  label: string;
+  label: ReactNode;
   icon: string;
 }
 
 const backendSteps: BackendStep[] = [
-  { label: "Check authentication", icon: "Lock" },
-  { label: "Save to database", icon: "DB" },
+  {
+    label: (
+      <>
+        Check{" "}
+        <InfoTip term="authentication">
+          Checking that you are who you say you are -- like showing your ID at a
+          door.
+        </InfoTip>
+      </>
+    ),
+    icon: "Lock",
+  },
+  {
+    label: (
+      <>
+        Save to{" "}
+        <InfoTip term="database">
+          A place where the app stores information permanently, like a digital
+          filing cabinet. You&apos;ll learn more about this on a later slide.
+        </InfoTip>
+      </>
+    ),
+    icon: "DB",
+  },
   { label: "Notify followers", icon: "Bell" },
 ];
 
@@ -115,7 +139,7 @@ export function FrontendBackendSlide({ active }: { active: boolean }) {
 
               return (
                 <div
-                  key={step.label}
+                  key={step.icon}
                   className={
                     isActive
                       ? "flex items-center gap-3 rounded-xl border border-sage-300 bg-sage-50 p-4 transition-colors duration-300"
@@ -143,6 +167,26 @@ export function FrontendBackendSlide({ active }: { active: boolean }) {
           </div>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "Can I see the backend?",
+            answer:
+              "Not directly. The backend runs on a server somewhere else -- you only see what it sends back to your browser. When you post a photo on Instagram, you see the photo appear (frontend), but you don't see the server saving it, checking your login, or notifying your followers (backend).",
+          },
+          {
+            question: "Do all websites have a backend?",
+            answer:
+              "Not all. Simple websites that just show text and images (like a personal blog) might only have a frontend. But anything that has user accounts, stores data, or needs to process information (like online shopping) needs a backend.",
+          },
+          {
+            question: "Who builds the frontend vs the backend?",
+            answer:
+              "Some developers specialize in one or the other -- 'frontend developers' and 'backend developers'. Some do both and are called 'full-stack developers'. It's like how in a restaurant, some people cook (backend) and some serve tables (frontend), but some small restaurants have people who do both.",
+          },
+        ]}
+      />
     </SlideLayout>
   );
 }

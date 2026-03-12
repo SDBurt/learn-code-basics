@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 function simulateSteps(
   steps: string[],
@@ -207,6 +208,19 @@ export function CachingSlide({ active }: { active: boolean }) {
           </CardContent>
         </Card>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "Where does the cache live?",
+            answer: "It can be in several places. Your browser has a cache (that's why websites load faster the second time). Servers have caches too. The idea is always the same -- keep a copy of something close by so you don't have to go far to get it."
+          },
+          {
+            question: "What happens when cached data is wrong or outdated?",
+            answer: "Caches have expiration times -- after a set period, the system fetches fresh data and replaces the old copy. It's like replacing the sticky note when the answer changes. Getting this timing right is one of the trickier parts of building software."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

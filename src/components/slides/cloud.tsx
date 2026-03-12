@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 const providers = [
   {
@@ -115,6 +116,19 @@ export function CloudSlide({ active }: { active: boolean }) {
           </div>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "Is 'the cloud' just someone else's computer?",
+            answer: "Essentially, yes! When people say 'in the cloud', they mean 'on computers owned and managed by a company like Amazon, Google, or Microsoft'. Instead of buying and maintaining your own servers, you rent space on theirs."
+          },
+          {
+            question: "Why don't companies just use their own computers?",
+            answer: "Running your own servers means buying hardware, keeping it cool, fixing things when they break, and making sure it's always on. Cloud providers handle all of that, and you can easily add more power when you need it -- like renting a bigger apartment instead of building a new house."
+          }
+        ]}
+      />
     </SlideLayout>
   );
 }

@@ -8,6 +8,8 @@ import {
   Blob,
 } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
+import { InfoTip } from "@/components/shared/info-tip";
 
 type RequestPhase = "idle" | "sending" | "responding" | "done";
 
@@ -57,9 +59,11 @@ export function InternetHttpSlide({ active }: { active: boolean }) {
       </h1>
 
       <p className="stagger-item text-lg text-warm-gray mb-5">
-        When you visit a website, your browser sends a request to a server,
-        which sends back a response. This back-and-forth is the foundation of
-        everything on the web.
+        When you visit a website, your browser sends a request to a{" "}
+        <InfoTip term="server">A server is just a computer somewhere else in the world that stores websites and sends them to you when you ask for them.</InfoTip>,
+        which sends back a response. This back-and-forth uses{" "}
+        <InfoTip term="HTTP">HTTP stands for HyperText Transfer Protocol. It&rsquo;s just the system of rules that your browser and websites use to talk to each other -- like a common language they both speak.</InfoTip>{" "}
+        and is the foundation of everything on the web.
       </p>
 
       <AnalogyBox>
@@ -160,6 +164,26 @@ export function InternetHttpSlide({ active }: { active: boolean }) {
           )}
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "What does HTTP actually stand for?",
+            answer:
+              "HyperText Transfer Protocol. Don't worry about memorizing it -- just know it's the set of rules that lets your browser and websites communicate. When you see 'https://' at the start of a web address, that's HTTP in action (the 's' stands for 'secure').",
+          },
+          {
+            question: "What are status codes?",
+            answer:
+              "They're short number codes the server sends back to say what happened. 200 means 'everything worked', 404 means 'I couldn't find what you asked for', and 500 means 'something went wrong on my end'. You've probably seen a '404 page not found' error before -- that's a status code.",
+          },
+          {
+            question: "What's the difference between a browser and a server?",
+            answer:
+              "Your browser (Chrome, Safari, Firefox) is the app on your device that you use to view websites. A server is a computer somewhere else in the world that stores the website and sends it to your browser when you ask for it.",
+          },
+        ]}
+      />
     </SlideLayout>
   );
 }
