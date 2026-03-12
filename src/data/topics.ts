@@ -6,6 +6,7 @@ import { PathwaysSlide } from "@/components/slides/pathways";
 import { PythonIntroSlide } from "@/components/slides/python-intro";
 import { VariablesSlide } from "@/components/slides/variables";
 import { DataTypesSlide } from "@/components/slides/data-types";
+import { HowCodeRunsSlide } from "@/components/slides/how-code-runs";
 import { ConditionalsSlide } from "@/components/slides/conditionals";
 import { LoopsSlide } from "@/components/slides/loops";
 import { FunctionsSlide } from "@/components/slides/functions";
@@ -71,8 +72,9 @@ export const TOPICS: Topic[] = [
       { title: "Why Code Matters", component: WhyCodeSlide },
       { title: "Coding Pathways", component: PathwaysSlide },
       { title: "Meet Python", component: PythonIntroSlide },
-      { title: "Variables", component: VariablesSlide },
+      { title: "How Code Runs", component: HowCodeRunsSlide },
       { title: "Data Types", component: DataTypesSlide },
+      { title: "Variables", component: VariablesSlide },
       { title: "Conditionals", component: ConditionalsSlide },
       { title: "Loops", component: LoopsSlide },
       { title: "Functions", component: FunctionsSlide },
