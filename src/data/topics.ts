@@ -13,6 +13,9 @@ import { FunctionsSlide } from "@/components/slides/functions";
 import { ListsSlide } from "@/components/slides/lists";
 import { DictionariesSlide } from "@/components/slides/dictionaries";
 import { TuplesSetsSlide } from "@/components/slides/tuples-sets";
+import { WhatIsABrowserSlide } from "@/components/slides/what-is-a-browser";
+import { WhatIsAWebsiteSlide } from "@/components/slides/what-is-a-website";
+import { WhatIsJsonSlide } from "@/components/slides/what-is-json";
 import { InternetHttpSlide } from "@/components/slides/internet-http";
 import { FrontendBackendSlide } from "@/components/slides/frontend-backend";
 import { ApisSlide } from "@/components/slides/apis";
@@ -90,6 +93,9 @@ export const TOPICS: Topic[] = [
     description:
       "How the internet works, from HTTP requests to system architecture and scaling.",
     slides: [
+      { title: "What is a Browser?", component: WhatIsABrowserSlide },
+      { title: "What is a Website?", component: WhatIsAWebsiteSlide },
+      { title: "What is JSON?", component: WhatIsJsonSlide },
       { title: "Internet & HTTP", component: InternetHttpSlide },
       { title: "Frontend vs Backend", component: FrontendBackendSlide },
       { title: "APIs", component: ApisSlide },

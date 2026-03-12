@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -32,10 +33,10 @@ interface CodeLineProps {
 function CodeLine({ children, highlighted }: CodeLineProps) {
   return (
     <div
-      className={
+      style={
         highlighted
-          ? "bg-pink-100 border-l-2 border-pink-400 -mx-3 px-3 py-0.5 rounded-r"
-          : "py-0.5"
+          ? { outline: "2px solid #f472b6", borderRadius: "0.375rem", margin: "0 -0.75rem", padding: "0.25rem 0.75rem" }
+          : { padding: "0.125rem 0" }
       }
     >
       {children}
@@ -128,6 +129,25 @@ export function ConditionalsSlide({ active }: { active: boolean }) {
                 when that condition is chosen.
               </span>
             </div>
+            <div className="flex items-start gap-3">
+              <span className="font-mono bg-pink-100 text-pink-600 px-2.5 py-0.5 rounded-md text-sm font-semibold min-w-[60px] text-center shrink-0">
+                ==
+              </span>
+              <span className="text-sm text-warm-gray">
+                Means &ldquo;is this equal to?&rdquo; &mdash; it&rsquo;s asking
+                a question. A single{" "}
+                <code className="font-mono text-pink-600">=</code> means
+                &ldquo;store this value&rdquo;. So{" "}
+                <code className="font-mono text-pink-600">
+                  weather == &quot;sunny&quot;
+                </code>{" "}
+                is checking, while{" "}
+                <code className="font-mono text-pink-600">
+                  outfit = &quot;sunglasses&quot;
+                </code>{" "}
+                is saving.
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -211,6 +231,17 @@ export function ConditionalsSlide({ active }: { active: boolean }) {
                 {opt.label}
               </Button>
             ))}
+            {selected && (
+              <Button
+                onClick={() => setSelected(null)}
+                variant="outline"
+                className="gap-1.5 border-sage-300 text-sage-600 hover:bg-sage-50"
+                size="default"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                Reset
+              </Button>
+            )}
           </div>
 
           {outfit && (
@@ -234,7 +265,7 @@ export function ConditionalsSlide({ active }: { active: boolean }) {
               <h4 className="font-display font-medium text-sm mb-2 text-sage-600">
                 Multiple if (checks ALL)
               </h4>
-              <div className="bg-[#1e1e2e] rounded-lg p-3 font-mono text-xs leading-relaxed">
+              <div className="bg-[#1e1e2e] rounded-lg p-3 font-mono text-xs leading-relaxed whitespace-pre">
                 <div>
                   <span className="syn-kw">if</span>{" "}
                   <span className="syn-kw">weather</span> =={" "}
@@ -267,7 +298,7 @@ export function ConditionalsSlide({ active }: { active: boolean }) {
               <h4 className="font-display font-medium text-sm mb-2 text-sage-600">
                 if/elif (checks until one matches)
               </h4>
-              <div className="bg-[#1e1e2e] rounded-lg p-3 font-mono text-xs leading-relaxed">
+              <div className="bg-[#1e1e2e] rounded-lg p-3 font-mono text-xs leading-relaxed whitespace-pre">
                 <div>
                   <span className="syn-kw">if</span>{" "}
                   <span className="syn-kw">weather</span> =={" "}
