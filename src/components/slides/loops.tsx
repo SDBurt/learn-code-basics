@@ -1,16 +1,55 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
-import { CodeBlock } from "@/components/shared/code-block";
+import { SlideQA } from "@/components/shared/slide-qa";
 import { Play, Check } from "lucide-react";
 
 const partyItems = ["balloons", "cake", "music", "confetti", "candles"];
 
+interface Annotation {
+  id: string;
+  label: string;
+  explanation: string;
+}
+
+const annotations: Annotation[] = [
+  {
+    id: "list",
+    label: "The list",
+    explanation:
+      "This creates a list of items. The square brackets [ ] hold the items, and commas separate each one. This is the data the loop will go through.",
+  },
+  {
+    id: "for",
+    label: "for",
+    explanation:
+      "'for' tells the computer: start a loop. It means 'I'm about to repeat something for each item.'",
+  },
+  {
+    id: "item",
+    label: "item",
+    explanation:
+      "'item' is a temporary variable that changes each time the loop repeats. First it becomes 'balloons', then 'cake', then 'music', and so on. You could name it anything -- 'thing', 'x', 'party_item' -- but 'item' is clear.",
+  },
+  {
+    id: "in",
+    label: "in",
+    explanation:
+      "'in' connects the loop to the list. It means 'go through each thing inside this list'. Read the whole line as: 'for each item in party_items, do the following.'",
+  },
+  {
+    id: "body",
+    label: "The indented line",
+    explanation:
+      "This indented line is the action that repeats. It runs once for each item in the list. The 4 spaces at the start tell Python this line belongs to the loop. Everything indented here happens 5 times (once per item).",
+  },
+];
+
 export function LoopsSlide({ active }: { active: boolean }) {
   const [visibleItems, setVisibleItems] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState(false);
+  const [activeAnnotation, setActiveAnnotation] = useState<string | null>(null);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
@@ -39,6 +78,36 @@ export function LoopsSlide({ active }: { active: boolean }) {
       timeoutsRef.current.push(timeout);
     });
   }, [isRunning]);
+
+  const toggleAnnotation = (id: string) => {
+    setActiveAnnotation((prev) => (prev === id ? null : id));
+  };
+
+  const annotationStyle = (id: string, variant: "inline" | "line" = "inline") => {
+    const isActive = activeAnnotation === id;
+    const somethingActive = activeAnnotation !== null;
+
+    const base = "cursor-pointer transition-all duration-200";
+
+    if (variant === "line") {
+      if (isActive) {
+        return `${base} bg-pink-200/60 border-l-2 border-pink-400 pl-2 -ml-2 rounded`;
+      }
+      if (somethingActive) {
+        return `${base} opacity-60 hover:opacity-90`;
+      }
+      return `${base} hover:bg-pink-100/40 rounded`;
+    }
+
+    // inline
+    if (isActive) {
+      return `${base} bg-pink-200/60 rounded px-0.5 -mx-0.5`;
+    }
+    if (somethingActive) {
+      return `${base} opacity-60 hover:opacity-90`;
+    }
+    return `${base} hover:bg-pink-100/40 rounded px-0.5 -mx-0.5`;
+  };
 
   return (
     <SlideLayout
@@ -73,51 +142,98 @@ export function LoopsSlide({ active }: { active: boolean }) {
 
       <div className="stagger-item grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         <div>
-          <CodeBlock>
-            <span className="syn-cm"># Party setup loop</span>
-            <br />
-            <span className="syn-kw">party_items</span> ={" "}
-            <span className="syn-br">[</span>
-            <span className="syn-str">"balloons"</span>,{" "}
-            <span className="syn-str">"cake"</span>,{" "}
-            <span className="syn-str">"music"</span>,{" "}
-            <span className="syn-str">"confetti"</span>,{" "}
-            <span className="syn-str">"candles"</span>
-            <span className="syn-br">]</span>
-            <br />
-            <br />
-            <span className="syn-kw">for</span>{" "}
-            <span className="syn-kw">item</span>{" "}
-            <span className="syn-kw">in</span>{" "}
-            <span className="syn-kw">party_items</span>:
-            <br />
-            {"    "}
-            <span className="syn-bi">print</span>
-            <span className="syn-br">(</span>
-            <span className="syn-str">"Setting up:"</span>,{" "}
-            <span className="syn-kw">item</span>
-            <span className="syn-br">)</span>
-          </CodeBlock>
+          <p className="text-xs text-sage-400 mb-2">
+            Click any highlighted part to learn what it does
+          </p>
 
-          <Card className="mt-4">
-            <CardContent className="p-5">
-              <h3 className="font-display font-medium text-lg mb-2 text-sage-600">
-                How loops work
-              </h3>
-              <div className="text-sm text-warm-gray leading-7">
-                <span className="font-mono text-sage-500">for</span> &mdash;
-                start a loop
-                <br />
-                <span className="font-mono text-sage-500">item</span> &mdash;
-                the current value
-                <br />
-                <span className="font-mono text-sage-500">in</span> &mdash;
-                iterate over a collection
-                <br />
-                The indented block runs <strong>once per item</strong>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="bg-[#1e1e2e] rounded-2xl p-5 font-mono text-sm leading-7 text-gray-200 select-none">
+            {/* Line 1: comment */}
+            <div className="text-gray-500"># Party setup loop</div>
+
+            {/* Line 2: the list */}
+            <div>
+              <span className="syn-kw">party_items</span>
+              <span> = </span>
+              <button
+                type="button"
+                onClick={() => toggleAnnotation("list")}
+                className={annotationStyle("list")}
+                tabIndex={0}
+              >
+                <span className="syn-br">[</span>
+                <span className="syn-str">&quot;balloons&quot;</span>
+                <span>, </span>
+                <span className="syn-str">&quot;cake&quot;</span>
+                <span>, </span>
+                <span className="syn-str">&quot;music&quot;</span>
+                <span>, </span>
+                <span className="syn-str">&quot;confetti&quot;</span>
+                <span>, </span>
+                <span className="syn-str">&quot;candles&quot;</span>
+                <span className="syn-br">]</span>
+              </button>
+            </div>
+
+            {/* Line 3: empty */}
+            <div>&nbsp;</div>
+
+            {/* Line 4: for item in party_items: */}
+            <div>
+              <button
+                type="button"
+                onClick={() => toggleAnnotation("for")}
+                className={annotationStyle("for")}
+                tabIndex={0}
+              >
+                <span className="syn-kw">for</span>
+              </button>{" "}
+              <button
+                type="button"
+                onClick={() => toggleAnnotation("item")}
+                className={annotationStyle("item")}
+                tabIndex={0}
+              >
+                <span className="syn-kw">item</span>
+              </button>{" "}
+              <button
+                type="button"
+                onClick={() => toggleAnnotation("in")}
+                className={annotationStyle("in")}
+                tabIndex={0}
+              >
+                <span className="syn-kw">in</span>
+              </button>{" "}
+              <span className="syn-kw">party_items</span>
+              <span>:</span>
+            </div>
+
+            {/* Line 5: indented body */}
+            <button
+              type="button"
+              onClick={() => toggleAnnotation("body")}
+              className={`block w-full text-left ${annotationStyle("body", "line")}`}
+              tabIndex={0}
+            >
+              <span>{"    "}</span>
+              <span className="syn-bi">print</span>
+              <span className="syn-br">(</span>
+              <span className="syn-str">&quot;Setting up:&quot;</span>
+              <span>, </span>
+              <span className="syn-kw">item</span>
+              <span className="syn-br">)</span>
+            </button>
+          </div>
+
+          {activeAnnotation && (
+            <div className="mt-3 bg-white rounded-xl border border-pink-200 p-4 output-enter">
+              <p className="text-xs font-semibold uppercase tracking-wider text-pink-500 mb-1.5">
+                {annotations.find((a) => a.id === activeAnnotation)?.label}
+              </p>
+              <p className="text-sm text-warm-gray leading-relaxed">
+                {annotations.find((a) => a.id === activeAnnotation)?.explanation}
+              </p>
+            </div>
+          )}
         </div>
 
         <div>
@@ -188,6 +304,21 @@ export function LoopsSlide({ active }: { active: boolean }) {
           </div>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "What if I want to loop a specific number of times?",
+            answer:
+              "You can! Python has a built-in way to say 'do this 10 times' using range(). For example: for i in range(10) will repeat the indented code 10 times. The list-based loop we showed is just one common pattern.",
+          },
+          {
+            question: "Can a loop run forever?",
+            answer:
+              "It can if you write it that way (called an 'infinite loop'), and it's a common beginner mistake. The computer will keep going until you force it to stop. That's why loops usually have a clear end point, like finishing all the items in a list.",
+          },
+        ]}
+      />
     </SlideLayout>
   );
 }
