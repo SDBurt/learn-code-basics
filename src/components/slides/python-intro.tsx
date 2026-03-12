@@ -1,5 +1,6 @@
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
 import { CodeBlock } from "@/components/shared/code-block";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 export function PythonIntroSlide({ active }: { active: boolean }) {
   return (
@@ -28,10 +29,9 @@ export function PythonIntroSlide({ active }: { active: boolean }) {
           </h3>
           <ul className="space-y-2">
             {[
-              "Easy to read and write",
-              "Huge community and tons of tutorials",
-              "Used in web dev, data science, AI, automation",
-              "Companies like Google, Netflix, and NASA use it",
+              "Reads almost like plain English",
+              "One of the most popular languages in the world",
+              "Used by companies like Google, Netflix, and NASA",
             ].map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-sage-400 rounded-full shrink-0" />
@@ -39,6 +39,16 @@ export function PythonIntroSlide({ active }: { active: boolean }) {
               </li>
             ))}
           </ul>
+
+          <h4 className="font-display font-medium text-base mt-4 mb-1.5">
+            What is syntax?
+          </h4>
+          <p className="text-sm text-warm-gray">
+            Every language has grammar rules -- English has rules about where
+            periods and capital letters go. Programming languages have grammar
+            rules too, and we call them <strong>syntax</strong>. If you break a
+            syntax rule, the computer won't understand and will show an error.
+          </p>
         </div>
 
         <div>
@@ -65,6 +75,26 @@ export function PythonIntroSlide({ active }: { active: boolean }) {
           </CodeBlock>
         </div>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "What does the # symbol do in the code?",
+            answer:
+              "Lines starting with # are called comments. The computer completely ignores them -- they're notes that developers write for themselves or other people reading the code. Think of them like sticky notes on a recipe.",
+          },
+          {
+            question: "What does 'print' do?",
+            answer:
+              "print() tells the computer to show something on the screen. Without it, the computer does its work silently. It's like the difference between doing math in your head vs. writing the answer down so someone else can see it.",
+          },
+          {
+            question: "Why did we pick Python and not another language?",
+            answer:
+              "Python reads the most like plain English, which makes it the easiest to learn and understand. The concepts you learn here (variables, loops, conditionals) work the same way in other languages -- only the spelling and grammar rules change.",
+          },
+        ]}
+      />
     </SlideLayout>
   );
 }

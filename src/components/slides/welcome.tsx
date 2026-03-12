@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
 import { AnalogyBox } from "@/components/shared/analogy-box";
+import { SlideQA } from "@/components/shared/slide-qa";
 
 export function WelcomeSlide({ active }: { active: boolean }) {
   return (
@@ -38,42 +39,44 @@ export function WelcomeSlide({ active }: { active: boolean }) {
           <CardContent className="p-6">
             <span className="text-3xl mb-3 block">&#x1F4DD;</span>
             <h3 className="font-display font-medium text-lg mb-2">
-              Human Language
+              What you might say
             </h3>
             <p className="text-sm text-warm-gray">
-              "Take the price of the item, add 20% tax, and show me the total"
+              &ldquo;Take the price, add the tax, and tell me the total&rdquo;
             </p>
           </CardContent>
         </Card>
 
         <Card className="hover:-translate-y-1 transition-all duration-300 hover:shadow-lg hover:shadow-pink-100">
           <CardContent className="p-6">
-            <span className="text-3xl mb-3 block">&#x1F4BB;</span>
-            <h3 className="font-display font-medium text-lg mb-2">Code</h3>
-            <div className="code-block !mt-2 !p-3 !text-[0.8rem]">
-              <span className="syn-kw">price</span>{" "}
-              <span className="syn-br">=</span>{" "}
-              <span className="syn-num">50</span>
-              <br />
-              <span className="syn-kw">tax</span>{" "}
-              <span className="syn-br">=</span>{" "}
-              <span className="syn-kw">price</span> *{" "}
-              <span className="syn-num">0.20</span>
-              <br />
-              <span className="syn-kw">total</span>{" "}
-              <span className="syn-br">=</span>{" "}
-              <span className="syn-kw">price</span> +{" "}
-              <span className="syn-kw">tax</span>
-              <br />
-              <span className="syn-bi">print</span>
-              <span className="syn-br">(</span>
-              <span className="syn-str">"Total:"</span>,{" "}
-              <span className="syn-kw">total</span>
-              <span className="syn-br">)</span>
-            </div>
+            <span className="text-3xl mb-3 block">&#x1F4CB;</span>
+            <h3 className="font-display font-medium text-lg mb-2">
+              What you&apos;d write for a computer
+            </h3>
+            <ol className="text-sm text-warm-gray space-y-1 list-decimal list-inside mt-2">
+              <li>The price is 50</li>
+              <li>The tax is the price times 0.20</li>
+              <li>The total is the price plus the tax</li>
+              <li>Show me the total</li>
+            </ol>
           </CardContent>
         </Card>
       </div>
+
+      <SlideQA
+        items={[
+          {
+            question: "Do I need to be good at math to code?",
+            answer:
+              "Not at all. Most coding is about logic and giving clear instructions, not advanced math. If you can follow a recipe or give someone directions, you already think the way a programmer does.",
+          },
+          {
+            question: "What's the difference between code and a program?",
+            answer:
+              "Code is the instructions you write. A program (or app) is what you get when the computer follows those instructions. Think of it like: the recipe is the code, and the finished cake is the program.",
+          },
+        ]}
+      />
     </SlideLayout>
   );
 }

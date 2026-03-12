@@ -1,35 +1,36 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlideLayout, Overline, Blob } from "@/components/shared/slide-layout";
+import { SlideQA } from "@/components/shared/slide-qa";
 import { AnalogyBox } from "@/components/shared/analogy-box";
-import { CodeBlock } from "@/components/shared/code-block";
+import { InfoTip } from "@/components/shared/info-tip";
 
 const types = [
   {
     name: "String",
     icon: "\u{1F4AC}",
-    desc: "Text wrapped in quotes",
+    desc: "Text -- like names, sentences, anything in quotes",
     example: '"Hello, world!"',
     color: "border-l-pink-400",
   },
   {
     name: "Integer",
     icon: "\u{1F522}",
-    desc: "Whole numbers",
+    desc: "A whole number, no decimals",
     example: "42",
     color: "border-l-sage-400",
   },
   {
     name: "Float",
     icon: "\u{1F4C9}",
-    desc: "Decimal numbers",
+    desc: "A number with a decimal point",
     example: "3.14",
     color: "border-l-amber-400",
   },
   {
     name: "Boolean",
     icon: "\u{2705}",
-    desc: "True or False",
+    desc: "Just True or False, like a yes/no",
     example: "True",
     color: "border-l-pink-300",
   },
@@ -142,16 +143,24 @@ export function DataTypesSlide({ active }: { active: boolean }) {
       </h1>
 
       <p className="stagger-item text-lg text-warm-gray mb-5">
-        Every piece of data in a program has a <strong>type</strong>. The type
-        tells the computer what kind of value it is and what you can do with it.
+        When you work with a computer, you deal with different kinds of
+        information. A name is text. Your age is a number. Whether something is
+        true or false is its own kind of thing. In programming, we call these{" "}
+        <InfoTip term="data types">
+          A data type is just a label that tells the computer what kind of
+          information something is. It needs to know so it can handle it
+          correctly -- you can do math with numbers but not with names.
+        </InfoTip>.
       </p>
 
       <div className="stagger-item">
         <AnalogyBox>
           <p>
-            Think of data types like different kinds of containers. You
-            wouldn&rsquo;t store soup in a paper bag or carry books in a glass.
-            Each type of data has a container that fits it best.
+            Think about your phone&rsquo;s contacts. A person&rsquo;s name is
+            text, their phone number is a number, and whether they&rsquo;re a
+            favourite is a yes or no. Computers need to know what kind of
+            information they&rsquo;re working with, just like you&rsquo;d know
+            the difference between a name and a phone number.
           </p>
         </AnalogyBox>
       </div>
@@ -178,71 +187,28 @@ export function DataTypesSlide({ active }: { active: boolean }) {
         <TypeSorter />
       </div>
 
-      <div className="stagger-item mt-5">
-        <CodeBlock
-          output={`name is a <class 'str'>
-age is a <class 'int'>
-height is a <class 'float'>
-is_learning is a <class 'bool'>`}
-        >
-          <span className="syn-kw">name</span>{" "}
-          <span className="syn-br">=</span>{" "}
-          <span className="syn-str">"Alice"</span>
-          {"        "}
-          <span className="syn-cm"># String</span>
-          <br />
-          <span className="syn-kw">age</span>{" "}
-          <span className="syn-br">=</span>{" "}
-          <span className="syn-num">25</span>
-          {"             "}
-          <span className="syn-cm"># Integer</span>
-          <br />
-          <span className="syn-kw">height</span>{" "}
-          <span className="syn-br">=</span>{" "}
-          <span className="syn-num">5.6</span>
-          {"          "}
-          <span className="syn-cm"># Float</span>
-          <br />
-          <span className="syn-kw">is_learning</span>{" "}
-          <span className="syn-br">=</span>{" "}
-          <span className="syn-num">True</span>
-          {"    "}
-          <span className="syn-cm"># Boolean</span>
-          <br />
-          <br />
-          <span className="syn-bi">print</span>
-          <span className="syn-br">(</span>
-          <span className="syn-str">"name is a"</span>,{" "}
-          <span className="syn-bi">type</span>
-          <span className="syn-br">(</span>
-          <span className="syn-kw">name</span>
-          <span className="syn-br">))</span>
-          <br />
-          <span className="syn-bi">print</span>
-          <span className="syn-br">(</span>
-          <span className="syn-str">"age is a"</span>,{" "}
-          <span className="syn-bi">type</span>
-          <span className="syn-br">(</span>
-          <span className="syn-kw">age</span>
-          <span className="syn-br">))</span>
-          <br />
-          <span className="syn-bi">print</span>
-          <span className="syn-br">(</span>
-          <span className="syn-str">"height is a"</span>,{" "}
-          <span className="syn-bi">type</span>
-          <span className="syn-br">(</span>
-          <span className="syn-kw">height</span>
-          <span className="syn-br">))</span>
-          <br />
-          <span className="syn-bi">print</span>
-          <span className="syn-br">(</span>
-          <span className="syn-str">"is_learning is a"</span>,{" "}
-          <span className="syn-bi">type</span>
-          <span className="syn-br">(</span>
-          <span className="syn-kw">is_learning</span>
-          <span className="syn-br">))</span>
-        </CodeBlock>
-      </div>
+      <SlideQA
+        items={[
+          {
+            question: "Why does the computer need to know the type?",
+            answer:
+              "Because different types can do different things. You can add two numbers together (5 + 3 = 8), but 'adding' two pieces of text sticks them together ('hello' + 'world' = 'helloworld'). The computer needs to know what kind of data it has so it knows what to do with it.",
+          },
+          {
+            question:
+              "Why are there two kinds of numbers (Integer and Float)?",
+            answer:
+              "Whole numbers (integers) and decimal numbers (floats) are stored differently inside the computer. For most everyday purposes you don't need to worry about it -- just know that 42 is an integer and 42.0 is a float.",
+          },
+          {
+            question:
+              'What\'s the difference between the number 42 and the text "42"?',
+            answer:
+              'The number 42 can be used in math -- you can add, subtract, or multiply it. The text "42" (with quotes) is just characters, like a word. You can\'t do math with it. The quotes are how the computer tells them apart.',
+          },
+        ]}
+      />
+
     </SlideLayout>
   );
 }

@@ -3,9 +3,9 @@ import { CodeBlock } from "@/components/shared/code-block";
 import { AnalogyBox } from "@/components/shared/analogy-box";
 
 const entries = [
-  { key: '"name"', val: '"Luna"' },
-  { key: '"breed"', val: '"Golden Retriever"' },
-  { key: '"age"', val: "3" },
+  { key: '"name"', val: '"Juneau"' },
+  { key: '"breed"', val: '"Pomsky"' },
+  { key: '"likes_to_play"', val: "True" },
   { key: '"friendly"', val: "True" },
 ];
 
@@ -46,7 +46,7 @@ export function DictionariesSlide({ active }: { active: boolean }) {
 
       <div className="stagger-item grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <CodeBlock output={"Luna\nLuna is 3"}>
+          <CodeBlock output={"Juneau\nJuneau is a Pomsky"}>
             <span className="syn-cm"># A dictionary about a dog</span>
             <br />
             <span className="syn-kw">dog</span> ={" "}
@@ -54,13 +54,13 @@ export function DictionariesSlide({ active }: { active: boolean }) {
             <br />
             {"  "}
             <span className="syn-str">"name"</span>:{" "}
-            <span className="syn-str">"Luna"</span>,<br />
+            <span className="syn-str">"Juneau"</span>,<br />
             {"  "}
             <span className="syn-str">"breed"</span>:{" "}
-            <span className="syn-str">"Golden Retriever"</span>,<br />
+            <span className="syn-str">"Pomsky"</span>,<br />
             {"  "}
-            <span className="syn-str">"age"</span>:{" "}
-            <span className="syn-num">3</span>,<br />
+            <span className="syn-str">"likes_to_play"</span>:{" "}
+            <span className="syn-kw">True</span>,<br />
             {"  "}
             <span className="syn-str">"friendly"</span>:{" "}
             <span className="syn-kw">True</span>
@@ -83,10 +83,10 @@ export function DictionariesSlide({ active }: { active: boolean }) {
             <span className="syn-kw">dog</span>[
             <span className="syn-str">'name'</span>]
             <span className="syn-br">{"}"}</span>
-            <span className="syn-str"> is </span>
+            <span className="syn-str"> is a </span>
             <span className="syn-br">{"{"}</span>
             <span className="syn-kw">dog</span>[
-            <span className="syn-str">'age'</span>]
+            <span className="syn-str">'breed'</span>]
             <span className="syn-br">{"}"}</span>
             <span className="syn-str">"</span>
             <span className="syn-br">)</span>
